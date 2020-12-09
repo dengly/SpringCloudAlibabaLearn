@@ -1,5 +1,6 @@
 package com.zzwtec.nacosdiscoveryconsumer.controller;
 
+import com.zzwtec.nacosdiscovery.feign.service.FeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -13,14 +14,10 @@ import java.net.URI;
 @RestController
 public class DemoController {
     @Autowired
-    private RestTemplate restTemplate;
-    @Autowired
-    private LoadBalancerClient loadBalancerClient;
+    private FeignService feignService;
 
     @GetMapping("/test")
     public String demo(String name){
-        ServiceInstance serviceInstance = loadBalancerClient.choose("nacos-discovery-provider");
-        URI uri = serviceInstance.getUri();
-        return restTemplate.getForObject(uri + "/demo?name=" + name, String.class);
+        return feignService.demo(name);
     }
 }

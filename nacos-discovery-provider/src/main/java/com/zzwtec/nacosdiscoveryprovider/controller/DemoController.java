@@ -1,13 +1,17 @@
 package com.zzwtec.nacosdiscoveryprovider.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import com.zzwtec.nacosdiscovery.feign.service.FeignService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class DemoController {
+public class DemoController implements FeignService {
+    @Value("${server.port}")
+    private String port;
 
-    @GetMapping("/demo")
-    public String demo(String name){
-        return "hello "+name;
+    @Override
+    public String demo(@RequestBody String name){
+        return "hello "+name + " @ "+port;
     }
 }
