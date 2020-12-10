@@ -17,11 +17,6 @@ transaction-logs/*
 *.iml
 *.class
 *.lib
-*/application.yml
-application.yml
-bootstrap.yml
-!/zzwtec-wechat/src/main/resources/bootstrap.yml
-zzwtec-wechat/src/main/resources/bootstrap.yml
 face/images/*
 !face/images/*.jpg
 !face/images/*.png
