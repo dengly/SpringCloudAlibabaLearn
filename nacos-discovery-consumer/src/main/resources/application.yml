@@ -1,46 +1,30 @@
-spring:
-  application:
-    name: nacos-discovery-consumer
-  cloud:
-    #向nacos中心注册服务
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-    loadbalancer:
-      retry:
-        enabled: true # 重试机制开关
-    #向sentinel控制台注册服务
-    sentinel:
-      transport:
-        dashboard: 127.0.0.1:8719
-      #取消控制台懒加载
-      eager: true
-  mvc:
-    servlet:
-      load-on-startup: 100
-
-# feign
-feign:
-  sentinel:
-    enabled: true
-
-# ribbon
-#ribbon:
-#  eager-load:
-#    enabled: true
-#    clients: nacos-discovery-provider
-#  ConnectTimeout: 600 # 设置连接超时时间
-#  ReadTimeout: 180000 # 设置读取超时时间
-#  OkToRetryOnAllOperations: true # 对所有操作请求都进行重试
-#  MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
-#  MaxAutoRetries: 1 # 对当前实例的重试次数
-
-server:
-  port: 8050
-
-#添加sentinel依赖后 暴露/actuator/sentinel端点
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+#将这个配置添加到nacos上
+#spring:
+#  cloud:
+#    loadbalancer:
+#      retry:
+#        enabled: true # 重试机制开关
+#    #向sentinel控制台注册服务
+#    sentinel:
+#      filter:
+#        #打开/关闭掉对Spring MVC端点的保护
+#        enabled: true
+#      transport:
+#        dashboard: 127.0.0.1:8719
+#      #取消控制台懒加载
+#      eager: true
+#  mvc:
+#    servlet:
+#      load-on-startup: 100
+#
+## feign
+#feign:
+#  sentinel:
+#    enabled: true # 不设置这个Feign的断路无效
+#
+##添加sentinel依赖后 暴露/actuator/sentinel端点
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'

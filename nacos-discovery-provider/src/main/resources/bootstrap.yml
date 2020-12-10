@@ -1,0 +1,37 @@
+server:
+  port: 8051
+  tomcat:
+    max-connections: 10000
+    threads:
+      max: 200
+      min-spare: 25
+    max-queue-size: 1000
+    max-idle-time: 30000
+
+spring:
+  application:
+    #这里的应用名对应 Nacos Config 中的 Data ID，实际应用名称以配置中心的配置为准
+    name: nacos-discovery-provider
+  profiles:
+    active: dev
+  cloud:
+    #向nacos中心注册服务
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        # 指定查找名为 yml 的配置文件
+        # Spring Boot 配置文件的加载顺序，依次为 bootstrap.properties -> bootstrap.yml -> application.properties -> application.yml ，其中 bootstrap.properties 配置为最高优先级
+        file-extension: yml
+        refresh-enabled: true
+
+        # 相同配置可以放到 common-dev.yml 来共享，减轻维护压力
+#        shared-configs: common-dev.yml
+#        shared-configs[x]:
+#          refresh: common-dev.yml
+
+        # extension-configs 与 shared-configs、shared-configs[x] 效果一样
+        extension-configs:
+          - data-id: common-dev.yml
+            group: DEFAULT_GROUP
+            refresh: true

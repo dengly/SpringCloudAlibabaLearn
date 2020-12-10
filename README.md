@@ -62,5 +62,6 @@ java -Dserver.port=8718 -Dcsp.sentinel.dashboard.server=127.0.0.1:8718 -Dcsp.sen
 
 ## 参考
 * [Spring Cloud Alibaba系列教程](https://www.jianshu.com/p/9a8d94c0c90c)
+* [Spring Cloud Alibaba 系列教程（视频）](https://www.bilibili.com/video/BV1yb411b7kP?p=1)
 * [SpringCloudAlibabaLearn](https://github.com/dengly/SpringCloudAlibabaLearn) 
 
